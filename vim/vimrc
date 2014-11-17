@@ -1,0 +1,40 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+color mustang
+syntax on
+set t_Co=256
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'spf13/vim-autoclose'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'pangloss/vim-javascript'
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+cmap Tabe tabe
+
+" auto-open nerdtree
+""autocmd vimenter * NERDTree
+""autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_check_on_open = 1
+let g:airline_theme = 'powerlineish'
+let g:airline_enable_branch = 1
+
+set smartindent
+set tabstop=4
+set list listchars=tab:»·,trail:·
+set nu ""line numbers
+set softtabstop=4 ""backspace delete 4 spaces
+set shiftwidth=4
+set expandtab
+set switchbuf=usetab,newtab
