@@ -4,6 +4,18 @@ color mustang
 syntax on
 set t_Co=256
 
+"" powerline conf
+set guifont=Inconsolata\ for\ Powerline:h15
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+
+"" omnicomplete
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -13,7 +25,9 @@ Plugin 'scrooloose/syntastic.git'
 Plugin 'spf13/vim-autoclose'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
-Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript',
+Plugin 'Lokaltog/powerline',
+Plugin 'tpope/vim-fugitive'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -21,14 +35,15 @@ filetype plugin indent on    " required
 cmap w!! w !sudo tee % >/dev/null
 cmap Tabe tabe
 
-" auto-open nerdtree
-""autocmd vimenter * NERDTree
-""autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_check_on_open = 1
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'powerlineish'
 let g:airline_enable_branch = 1
+
+let g:ctrlp_show_hidden = 1
 
 set smartindent
 set tabstop=4
@@ -38,3 +53,5 @@ set softtabstop=4 ""backspace delete 4 spaces
 set shiftwidth=4
 set expandtab
 set switchbuf=usetab,newtab
+set hlsearch
+set laststatus=2 ""open vim-airline even if there is only one split
