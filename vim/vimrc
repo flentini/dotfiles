@@ -20,16 +20,19 @@ set omnifunc=syntaxcomplete#Complete
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'spf13/vim-autoclose'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript',
-Plugin 'Lokaltog/powerline',
 Plugin 'tpope/vim-fugitive'
+Plugin 'fatih/vim-go'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
