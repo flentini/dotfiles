@@ -12,21 +12,24 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 
-"" omnicomplete
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
+"" rust highlighting
+filetype on
+au BufNewFile,BufRead *.rs set filetype=rust
+au BufNewFile,BufRead *.go set filetype=go
 
+"" es6 support
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic.git'
-Plugin 'spf13/vim-autoclose'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript',
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
+Plugin 'wting/rust.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
