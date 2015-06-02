@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-color mustang
+colorscheme mustang
 syntax on
 set t_Co=256
 
@@ -22,7 +22,7 @@ au BufNewFile,BufRead *.go set filetype=go
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic.git'
