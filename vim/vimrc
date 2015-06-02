@@ -12,13 +12,15 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 
-"" rust highlighting
 filetype on
+"" rust highlighting
 au BufNewFile,BufRead *.rs set filetype=rust
+"" go highlighting
 au BufNewFile,BufRead *.go set filetype=go
 
 "" es6 support
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -55,9 +57,19 @@ set smartindent
 set tabstop=4
 set list listchars=tab:»·,trail:·
 set nu ""line numbers
+set backspace=2 " make backspace work like most other apps
+set clipboard=unnamed
 set softtabstop=4 ""backspace delete 4 spaces
 set shiftwidth=4
 set expandtab
 set switchbuf=usetab,newtab
 set hlsearch
 set laststatus=2 ""open vim-airline even if there is only one split
+
+" Ctrl-Space for completions. Heck Yeah!
+"inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+"            \ "\<lt>C-n>" :
+"            \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+"            \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+"            \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+"imap <C-@> <C-Space>
