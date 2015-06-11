@@ -10,7 +10,6 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 
-filetype on
 "" rust highlighting
 au BufNewFile,BufRead *.rs set filetype=rust
 "" go highlighting
@@ -29,6 +28,7 @@ Plugin 'pangloss/vim-javascript',
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
 Plugin 'wting/rust.vim'
+Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -57,20 +57,12 @@ let g:ctrlp_show_hidden = 1
 set smartindent
 set tabstop=4
 set list listchars=tab:»·,trail:·
-set nu ""line numbers
+set nu " line numbers
 set backspace=2 " make backspace work like most other apps
-set clipboard=unnamed
-set softtabstop=4 ""backspace delete 4 spaces
+set clipboard=unnamed   " use the system clipboard
+set softtabstop=4 " backspace delete 4 spaces
 set shiftwidth=4
 set expandtab
 set switchbuf=usetab,newtab
 set hlsearch
-set laststatus=2 ""open vim-airline even if there is only one split
-
-" Ctrl-Space for completions. Heck Yeah!
-"inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-"            \ "\<lt>C-n>" :
-"            \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-"            \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-"            \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-"imap <C-@> <C-Space>
+set laststatus=2 " open vim-airline even if there is only one split
