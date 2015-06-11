@@ -29,6 +29,7 @@ Plugin 'pangloss/vim-javascript',
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
 Plugin 'wting/rust.vim'
+Plugin 'croaker/mustang-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
