@@ -1,7 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-colorscheme mustang
-syntax on
 set t_Co=256
 
 "" powerline conf
@@ -17,12 +15,11 @@ filetype on
 au BufNewFile,BufRead *.rs set filetype=rust
 "" go highlighting
 au BufNewFile,BufRead *.go set filetype=go
-
 "" es6 support
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic.git'
@@ -34,6 +31,9 @@ Plugin 'fatih/vim-go'
 Plugin 'wting/rust.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+syntax on
+colorscheme mustang
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
