@@ -36,6 +36,8 @@ filetype plugin indent on    " required
 
 syntax on
 :silent! colorscheme mustang
+set t_ut=   " for tmux
+
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
