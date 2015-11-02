@@ -31,13 +31,13 @@ Plugin 'fatih/vim-go'
 Plugin 'wting/rust.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
+Plugin 'jason0x43/vim-js-indent'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 syntax on
 :silent! colorscheme mustang
 set t_ut=   " for tmux
-
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
