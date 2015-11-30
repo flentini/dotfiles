@@ -29,6 +29,9 @@ Plugin 'fatih/vim-go'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
 Plugin 'jason0x43/vim-js-indent'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -76,3 +79,7 @@ set expandtab
 set switchbuf=usetab,newtab
 set hlsearch
 set laststatus=2 " open vim-airline even if there is only one split
+
+" fireplace eval remapping
+nnoremap <C-e> :Eval<CR>
+nnoremap E :%Eval<CR>
