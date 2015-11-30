@@ -3,11 +3,11 @@ filetype off                  " required
 set t_Co=256
 
 "" powerline conf
-set guifont=Inconsolata\ for\ Powerline:h15
+"set guifont=Inconsolata\ for\ Powerline:h16
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
+set term=screen-256color
 set termencoding=utf-8
 
 "" rust highlighting
@@ -31,13 +31,13 @@ Plugin 'fatih/vim-go'
 Plugin 'wting/rust.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
+Plugin 'jason0x43/vim-js-indent'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 syntax on
 :silent! colorscheme mustang
 set t_ut=   " for tmux
-
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -47,8 +47,16 @@ let g:go_highlight_structs = 1
 cmap w!! w !sudo tee % >/dev/null
 cmap Tabe tabe
 
-let g:syntastic_javascript_checkers=['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_javascript_checkers = ['jscs', 'jshint']
 let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_auto_jump = 1
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
