@@ -3,11 +3,11 @@ filetype off                  " required
 set t_Co=256
 
 "" powerline conf
-set guifont=Inconsolata\ for\ Powerline:h15
+"set guifont=Inconsolata\ for\ Powerline:h16
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
+set term=screen-256color
 set termencoding=utf-8
 
 "" rust highlighting
@@ -50,11 +50,13 @@ cmap Tabe tabe
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_javascript_checkers=['jshint', 'jscs']
+let g:syntastic_javascript_checkers = ['jscs', 'jshint']
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_auto_jump = 1
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
