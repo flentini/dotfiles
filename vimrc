@@ -10,8 +10,6 @@ set fillchars+=stl:\ ,stlnc:\
 set term=screen-256color
 set termencoding=utf-8
 
-"" rust highlighting
-au BufNewFile,BufRead *.rs set filetype=rust
 "" go highlighting
 au BufNewFile,BufRead *.go set filetype=go
 "" es6 support
@@ -28,7 +26,6 @@ Plugin 'pangloss/vim-javascript',
 Plugin 'mxw/vim-jsx',
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
-Plugin 'wting/rust.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
 Plugin 'jason0x43/vim-js-indent'
