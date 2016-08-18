@@ -85,3 +85,4 @@ PROMPT='%n ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export NODE_ENV=development
 export TERM=screen-256color
+export EDITOR=vim
