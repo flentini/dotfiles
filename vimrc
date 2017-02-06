@@ -4,12 +4,15 @@ set t_Co=256
 
 "" powerline conf
 "set guifont=Inconsolata\ for\ Powerline:h16
+"set guifont=Inconsolata\ 15
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
 set term=screen-256color
 set termencoding=utf-8
 
+"" rust highlighting
+au BufNewFile,BufRead *.rs set filetype=rust
 "" go highlighting
 au BufNewFile,BufRead *.go set filetype=go
 "" es6 support
@@ -26,12 +29,10 @@ Plugin 'pangloss/vim-javascript',
 Plugin 'mxw/vim-jsx',
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
+Plugin 'wting/rust.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
 Plugin 'jason0x43/vim-js-indent'
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-classpath'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -51,6 +52,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_javascript_checkers = ['jscs', 'jshint']
+"let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -74,6 +76,7 @@ set nu " line numbers
 set backspace=2 " make backspace work like most other apps
 set clipboard=unnamed   " use the system clipboard
 set softtabstop=4 " backspace delete 4 spaces
+set backupcopy=yes " disable save write to allow webpack to properly detect file changes
 set shiftwidth=4
 set expandtab
 set switchbuf=usetab,newtab
