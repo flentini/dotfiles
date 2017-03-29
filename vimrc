@@ -23,7 +23,8 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic.git'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript',
 Plugin 'mxw/vim-jsx',
