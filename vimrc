@@ -23,17 +23,18 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic.git'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript',
 Plugin 'mxw/vim-jsx',
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
 Plugin 'wting/rust.vim'
+Plugin 'posva/vim-vue'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
 Plugin 'jason0x43/vim-js-indent'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -52,8 +53,8 @@ cmap Tabe tabe
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_javascript_checkers = ['jscs', 'jshint']
-"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_checkers = ['jscs', 'jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
