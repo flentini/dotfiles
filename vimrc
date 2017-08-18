@@ -24,6 +24,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript',
 Plugin 'mxw/vim-jsx',
@@ -72,15 +73,16 @@ let g:ctrlp_show_hidden = 1
 let g:jsx_ext_required = 0  "syntax highlighting in .js files too
 
 set smartindent
-set tabstop=4
+set tabstop=2
 set list listchars=tab:»·,trail:·
 set nu " line numbers
 set backspace=2 " make backspace work like most other apps
-set clipboard=unnamed   " use the system clipboard
-set softtabstop=4 " backspace delete 4 spaces
+"set clipboard=unnamed   " use the system clipboard
+set softtabstop=2 " backspace delete 4 spaces
 set backupcopy=yes " disable save write to allow webpack to properly detect file changes
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
+set smarttab
 set switchbuf=usetab,newtab
 set hlsearch
 set laststatus=2 " open vim-airline even if there is only one split
