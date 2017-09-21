@@ -3,8 +3,7 @@ filetype off                  " required
 set t_Co=256
 
 "" powerline conf
-"set guifont=Inconsolata\ for\ Powerline:h16
-"set guifont=Inconsolata\ 15
+set guifont=Inconsolata\ for\ Powerline:h15
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
@@ -77,7 +76,7 @@ set tabstop=2
 set list listchars=tab:»·,trail:·
 set nu " line numbers
 set backspace=2 " make backspace work like most other apps
-"set clipboard=unnamed   " use the system clipboard
+set clipboard=unnamed   " use the system clipboard
 set softtabstop=2 " backspace delete 4 spaces
 set backupcopy=yes " disable save write to allow webpack to properly detect file changes
 set shiftwidth=2
