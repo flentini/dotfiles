@@ -24,7 +24,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'pangloss/vim-javascript',
 Plugin 'mxw/vim-jsx',
 Plugin 'tpope/vim-fugitive'
