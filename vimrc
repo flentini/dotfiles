@@ -10,12 +10,12 @@ set fillchars+=stl:\ ,stlnc:\
 set term=screen-256color
 set termencoding=utf-8
 
-"" rust highlighting
 au BufNewFile,BufRead *.rs set filetype=rust
-"" go highlighting
 au BufNewFile,BufRead *.go set filetype=go
-"" es6 support
 au BufRead,BufNewFile *.es6 setfiletype javascript
+au FocusGained,BufEnter * :silent! !
+"au FocusLost,WinLeave * :silent! noautocmd w
+"au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle
@@ -34,6 +34,7 @@ Plugin 'wting/rust.vim'
 Plugin 'posva/vim-vue'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'croaker/mustang-vim'
+Plugin 'hashivim/vim-terraform'
 call vundle#end()            " required
 
 filetype plugin indent on
@@ -49,15 +50,15 @@ let g:go_highlight_structs = 1
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%*
 
 let g:ale_open_list = 1
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['eslint']
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme = 'powerlineish'
