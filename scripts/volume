@@ -1,0 +1,30 @@
+#!/bin/sh
+
+VOL=$1
+
+is_mute() {
+  echo $(pactl list sinks | grep '^[[:space:]]Mute' | awk -F':' '{ print $2 }' | sed 's/^[\t]+//g')
+}
+
+get_volume() {
+  echo $(pactl list sinks | grep '^[[:space:]]Volume' | awk -F'/' '{ print $2 }' | sed 's/^[\t]+//g')
+}
+
+set_volume() {
+  pactl set-sink-volume 0 $VOL
+}
+
+toggle_mute() {
+  pactl set-sink-mute 0 toggle
+}
+
+if [ $VOL = mute ]; then
+  toggle_mute
+  osdmsg "$(pactl list sinks | grep '^[[:space:]]Mute' | sed 's/^[\t]+//g')"
+else
+  if [ $(is_mute) = yes ]; then
+    toggle_mute
+  fi
+  set_volume
+  osdmsg "Volume: $(get_volume)"
+fi
