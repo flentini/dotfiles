@@ -1,0 +1,4 @@
+#!/bin/sh
+
+killall aosd_cat &> /dev/null
+echo $1 | aosd_cat -n "Monospace 52" -R "#9c9c9c" -B None -S black -p 4 -o 100
