@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,16 +49,16 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm)
+plugins=(git npm zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH="/usr/local/heroku/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/bin"
+export PATH="/usr/local/heroku/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/bin:/usr/local/share/dotnet:/usr/local/go/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
-PROMPT='%n ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -86,3 +86,11 @@ PROMPT='%n ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}
 export NODE_ENV=development
 export TERM=screen-256color
 export EDITOR=vim
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
+if [ "$TMUX" = "" ]; then tmux; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
