@@ -1,0 +1,2 @@
+id=$(xinput --list|grep Synaptics|awk '{print $5}'| cut -d'=' -f2)
+xinput set-prop $id "libinput Tapping Enabled" 1
