@@ -200,6 +200,8 @@ bindsym XF86AudioMicMute exec pactl set-source-mute alsa_input.pci-0000_00_1f.3.
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && osdmsg "Brightness: $(xbacklight -get | awk -F'.' '{print $1}')%" # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && osdmsg "Brightness: $(xbacklight -get | awk -F'.' '{print $1}')%" # decrease screen brightness
+bindsym XF86Bluetooth exec osdmsg "$(bluetooth)"
+bindsym XF86WLAN exec osdmsg "$(wifi)"
 
 #enable trackpad tapping
 exec --no-startup-id enable-trackpad-tap
