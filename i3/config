@@ -222,6 +222,6 @@ exec --no-startup-id clipit
 #set keyboard layout
 exec --no-startup-id setxkbmap gb
 
-#default_border none
+default_border none
 floating_minimum_size 180 x 150
 floating_maximum_size -1 x -1
