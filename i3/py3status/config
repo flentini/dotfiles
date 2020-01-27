@@ -12,11 +12,17 @@ general {
 }
 
 order += "wireless _first_"
+order += "mybt"
 #order += "ethernet _first_"
 order += "battery_level"
 order += "cpu_temperature 0"
 order += "load"
 order += "tztime local"
+
+mybt {
+        hide_when_disconnected = True
+        color_good = "#FFFFFF"
+}
 
 wireless _first_ {
         format_up = "\uf1eb %quality at %essid - %ip"
@@ -38,27 +44,29 @@ battery all {
         status_full = " "
 }
 
-battery_level{
+battery_level {
     cache_timeout = 30
     color_bad = "#FF0000"
     color_charging = "#FCE94F"
     color_degraded = "#ff7a00"
     color_good = "#00FF00"
 
+    #""
     #format_notify_charging = "charging"
     #format_notify_discharging = "discharging {percent}"
     hide_when_full = False
     hide_seconds = True
     #notification = True
-    notify_low_level = True
-    blocks = ""
+    notify_low_level = False
+    blocks = ""
     charging_character = ""
+    threshold_degraded = 20
     format = "{icon} {percent}% {time_remaining}"
     #color_charging = "#FFFFFF"
 }
 
 tztime local {
-        format = "\uf073 %d/%m/%Y %H:%M"
+        format = "\uf073 %a, %d/%m/%Y %H:%M"
 }
 
 load {
@@ -67,7 +75,7 @@ load {
 
 cpu_temperature 0 {
         format = "\uf2c7 %degrees °C"
-        path = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+        path = "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input"
 }
 
 disk "/home" {
