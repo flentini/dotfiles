@@ -72,20 +72,51 @@ noremap <Right> <Nop>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#ale#enabled = 1
 let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
 
-let g:ale_open_list = 1
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['eslint']
-let g:ale_fixers['typescript'] = ['tslint']
-
+"let g:airline#extensions#ale#enabled = 1
+"let g:ale_open_list = 1
+"let g:ale_fixers = {}
+"let g:ale_fixers['javascript'] = ['eslint']
+"" let g:ale_fixers['typescript'] = ['tslint']
+"let g:ale_fixers['typescript'] = ['eslint']
+"let g:ale_fix_on_save = 1
+"let g:ale_lint_on_save = 1
+"let g:ale_lint_on_text_changed = 0
+""let b:ale_linters = ['eslint']
+"let g:ale_sign_error = '✘'
+"let g:ale_sign_warning = '⚠'
+"highlight ALEErrorSign ctermbg=NONE ctermfg=red
+"highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+"
+"" let g:typescript_indent_disable = 1
+"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
-
-let g:typescript_indent_disable = 1
+"let g:go_def_mode='gopls'
+"let g:go_info_mode='gopls'
+let g:go_def_mapping_enabled = 0
+let g:go_auto_type_info = 1
 
 " ctrl+p opens fzf files
 map <C-p> :Files<CR>
+
+" first, enable status line always
+set laststatus=2
+
+set diffopt=vertical
+
+let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\  'typescript' : {
+\      'extends' : 'tsx',
+\  },
+\}
+"
+"set redrawtime=10000
+"autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
