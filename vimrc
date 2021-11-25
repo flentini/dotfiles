@@ -11,6 +11,7 @@ if has('mouse')
   set mouse=a
 endif
 
+set path=.,,**
 set t_Co=256
 set encoding=utf-8
 set fileencoding=utf-8
@@ -25,8 +26,7 @@ set switchbuf=usetab,newtab
 set hlsearch
 "set ignorecase
 set incsearch
-"set noswapfile
-set laststatus=2 " open vim-airline even if there is only one split
+set laststatus=2 " always enable status line
 set expandtab
 set smarttab
 set tabstop=2
@@ -34,6 +34,9 @@ set softtabstop=2
 set shiftwidth=2
 set autoread
 set clipboard=unnamed " use the system clipboard
+set noshowmode " hide mode status
+set termguicolors
+set diffopt=vertical
 
 syntax on
 :silent! colorscheme mustang
@@ -72,13 +75,36 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
-let g:airline#extensions#branch#enabled = 1
-let g:airline_theme = 'powerlineish'
-let g:airline_powerline_fonts = 1
+"" LIGHTLINE
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component': { 'close': '', 'lineinfo': '%3l:%-2v%<' },
+\ 'component_function': {
+\   'gitbranch': 'FugitiveHead',
+\   'filename': 'LightlineFilename'
+\ },
+\ }
 
-"let g:airline#extensions#ale#enabled = 1
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.tabline.tabsel = [ [ '#d7d9d8', '#006f4c', 248, 50, 'bold' ] ]
+"let s:palette.tabline.middle = [['#000000', '#000000', 248, 236]]
+unlet s:palette
+
+" shows relative file path. requires vim-fugitive
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+"" /LIGHTLINE
+
 "let g:ale_open_list = 1
 "let g:ale_fixers = {}
 "let g:ale_fixers['javascript'] = ['eslint']
@@ -93,11 +119,6 @@ let g:airline_powerline_fonts = 1
 "highlight ALEErrorSign ctermbg=NONE ctermfg=red
 "highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 "
-"" let g:typescript_indent_disable = 1
-"
-"let g:go_highlight_functions = 1
-"let g:go_highlight_methods = 1
-"let g:go_highlight_structs = 1
 ""let g:go_def_mode='gopls'
 ""let g:go_info_mode='gopls'
 "let g:go_def_mapping_enabled = 0
@@ -169,12 +190,6 @@ augroup END
 
 " ctrl+p opens fzf files
 map <C-p> :Files<CR>
-
-" first, enable status line always
-set laststatus=2
-
-set diffopt=vertical
-
 let g:fzf_layout = { 'down': '~40%' }
 
 "let g:user_emmet_leader_key='<C-z>'
@@ -186,5 +201,3 @@ let g:user_emmet_settings = {
 \      'extends' : 'tsx',
 \  },
 \}
-"
-"autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
