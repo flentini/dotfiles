@@ -90,7 +90,7 @@ let g:lightline = {
 \ }
 
 let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.tabline.tabsel = [ [ '#d7d9d8', '#006f4c', 248, 50, 'bold' ] ]
+let s:palette.tabline.tabsel = [ [ '#d7d9d8', '#202020', 248, 50, 'bold' ] ]
 "let s:palette.tabline.middle = [['#000000', '#000000', 248, 236]]
 unlet s:palette
 
@@ -138,7 +138,7 @@ function! s:build_go_files()
 endfunction
 
 let g:go_list_type = "quickfix"
-let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 
 let g:go_highlight_types = 1
