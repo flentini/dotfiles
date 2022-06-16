@@ -90,7 +90,8 @@ let g:lightline = {
 \ }
 
 let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.tabline.tabsel = [ [ '#d7d9d8', '#202020', 248, 50, 'bold' ] ]
+"let s:palette.tabline.tabsel = [ [ '#d7d9d8', '#202020', 248, 50, 'bold' ] ]
+let s:palette.tabline.tabsel = [ [ '#00FF00', '#202020', 248, 50 ] ]
 "let s:palette.tabline.middle = [['#000000', '#000000', 248, 236]]
 unlet s:palette
 
