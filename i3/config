@@ -36,10 +36,16 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Helvetica Neue, FontAwesome 10
 
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Start a terminal
 bindsym $mod+Return exec --no-startup-id "st -f 'Hack:size=11:pixelsize=22:autohint=true:antialias=true'"
+#bindsym $mod+Return exec --no-startup-id "st -f 'Liberation Mono:pixelsize=22:antialias=true:autohint=true'"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -50,25 +56,25 @@ bindsym $mod+q exec i3-input -F '[workspace=^%s$] kill' -P 'kill workspace?'
 # rofi
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -modi combi -combi-modi window#drun -theme solarized -font "hack 13" -show combi'
 
-# change focus
+# change focus using vim keys
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# change focus using the cursor keys
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+# move focused window using vim keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# move focused window using cursor keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -137,15 +143,13 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 5 ppt
         bindsym k resize grow height 10 px or 5 ppt
         bindsym l resize shrink height 10 px or 5 ppt
@@ -169,6 +173,8 @@ bar {
   verbose yes
   position top
   tray_output primary
+  #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+  #font pango:DejaVu Sans Mono 10
   #status_command i3status
   status_command py3status
   i3bar_command i3bar -t
@@ -201,11 +207,21 @@ bindsym XF86AudioLowerVolume exec volume -10%
 bindsym XF86AudioMute exec volume mute
 bindsym XF86AudioMicMute exec pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo toggle
 
-bindsym XF86MonBrightnessUp exec osdmsg "Brightness: $(~/bin/brightness inc)%" # increase screen brightness
-bindsym XF86MonBrightnessDown exec osdmsg "Brightness: $(~/bin/brightness dec)%" # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && osdmsg "Brightness: $(xbacklight -get | awk -F'.' '{print $1}')%" # increase screen brightness
+# increase screen brightness
+bindsym XF86MonBrightnessUp exec osdmsg "Brightness: $(~/bin/brightness inc)%"
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && osdmsg "Brightness: $(xbacklight -get | awk -F'.' '{print $1}')%" # decrease screen brightness
+# decrease screen brightness
+bindsym XF86MonBrightnessDown exec osdmsg "Brightness: $(~/bin/brightness dec)%"
 bindsym XF86Bluetooth exec osdmsg "$(bluetooth)"
 bindsym XF86WLAN exec osdmsg "$(wifi)"
 bindsym XF86Display exec mons -o
+
+#enable trackpad tapping
+#exec --no-startup-id enable-trackpad-tap
+
+#enable xautolock
+#exec --no-startup-id autosuspend
 
 #clipboard manager
 exec --no-startup-id clipit
