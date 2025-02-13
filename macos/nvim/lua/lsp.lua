@@ -26,6 +26,19 @@ lspconfig.ts_ls.setup {
   capabilities = require("cmp_nvim_lsp").default_capabilities()
 }
 
+
+-- Python LSP
+lspconfig.pyright.setup({
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+  on_attach = function(client, bufnr)
+    require("lsp_signature").on_attach({
+      bind = true,
+      floating_window = true,
+      hint_enable = true,
+    }, bufnr)
+  end,
+})
+
 -- nvim-cmp setup for autocompletion
 local cmp = require("cmp")
 
@@ -43,13 +56,15 @@ cmp.setup({
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.prettier, -- Use Prettier for formatting
+    null_ls.builtins.formatting.prettier, -- Prettier for JavaScript/TypeScript
+    null_ls.builtins.formatting.black, -- Black for Python formatting
+    null_ls.builtins.diagnostics.ruff, -- Ruff for Python linting
   },
 })
 
 -- Auto-format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
+  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.py" },
   callback = function()
     vim.lsp.buf.format({
       timeout_ms = 2000,
