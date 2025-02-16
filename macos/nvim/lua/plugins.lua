@@ -77,7 +77,12 @@ return {
   },
 
   -- File Explorer
-  { "nvim-tree/nvim-tree.lua" },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   config = function()
+  --     require("nvim-tree").setup()
+  --   end
+  -- },
 
   -- Linter and formatter
   { "nvim-lua/plenary.nvim" },

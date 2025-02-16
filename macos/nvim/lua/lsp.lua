@@ -1,6 +1,9 @@
 local lspconfig = require("lspconfig")
 local null_ls = require("null-ls")
 
+-- Shared capabilities for all LSP servers
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 -- Function to run when LSP attaches to a buffer
 local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -16,25 +19,28 @@ local on_attach = function(client, bufnr)
   require("lsp_signature").on_attach({
     bind = true,
     floating_window = true,
-    hint_enable = true,
+    hint_enable = false,
   }, bufnr)
 end
 
 -- TypeScript & JavaScript LSP
 lspconfig.ts_ls.setup {
   on_attach = on_attach,   -- Attach keybindings
-  capabilities = require("cmp_nvim_lsp").default_capabilities()
+  capabilities = capabilities
 }
-
 
 -- Python LSP
 lspconfig.pyright.setup({
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+  capabilities = capabilities,
   on_attach = function(client, bufnr)
     require("lsp_signature").on_attach({
       bind = true,
       floating_window = true,
-      hint_enable = true,
+      hint_enable = false,
+      hint_prefix = "🔍 ",
+      handler_opts = {
+        border = "rounded"
+      },
     }, bufnr)
   end,
 })
@@ -46,19 +52,27 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' }, -- LSP suggestions
-    { name = 'buffer' }, -- Buffer words
-    { name = 'path' } -- File paths
-  })
+    { name = 'nvim_lsp', priority = 1000 }, -- LSP suggestions
+    { name = 'buffer', priority = 500 }, -- Buffer words
+    { name = 'path', priority = 250 } -- File paths
+  }),
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 })
 
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.prettier, -- Prettier for JavaScript/TypeScript
-    null_ls.builtins.formatting.black, -- Black for Python formatting
+    null_ls.builtins.formatting.black.with({ -- Black for Python formatting
+      extra_args = { "--fast" },
+    }),
     null_ls.builtins.diagnostics.ruff, -- Ruff for Python linting
+    null_ls.builtins.code_actions.gitsigns,
   },
 })
 
