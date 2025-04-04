@@ -78,7 +78,7 @@ null_ls.setup({
 
 -- Auto-format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.py" },
+  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.py", "*.json" },
   callback = function()
     vim.lsp.buf.format({
       timeout_ms = 2000,

@@ -19,6 +19,11 @@ return {
   -- { "saadparwaiz1/cmp_luasnip" },
   -- { "L3MON4D3/LuaSnip" },
 
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "G" }, -- Lazy load on Git commands
+  },
+
   -- Treesitter for better syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
@@ -104,6 +109,9 @@ return {
     },
     config = function()
       require("codecompanion").setup({
+        opts = {
+          log_level = "DEBUG", -- or "TRACE"
+        },
         strategies = {
           chat = {
             adapter = "anthropic",
