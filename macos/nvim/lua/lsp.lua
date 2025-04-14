@@ -32,17 +32,19 @@ lspconfig.ts_ls.setup {
 -- Python LSP
 lspconfig.pyright.setup({
   capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    require("lsp_signature").on_attach({
-      bind = true,
-      floating_window = true,
-      hint_enable = false,
-      hint_prefix = "🔍 ",
-      handler_opts = {
-        border = "rounded"
-      },
-    }, bufnr)
-  end,
+  on_attach = on_attach,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+        extraPaths = {
+          "${workspaceFolder}", -- Add current project
+        }
+      }
+    }
+  },
 })
 
 -- nvim-cmp setup for autocompletion

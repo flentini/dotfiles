@@ -7,6 +7,13 @@ vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.swapfile = false
 
+-- Make line numbers more visible (with higher priority than themes)
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#888888" })
+  end,
+})
+
 vim.cmd("language en_US")
 
 -- Lazy.nvim (Plugin Manager)
