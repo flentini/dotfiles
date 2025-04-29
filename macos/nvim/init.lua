@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
-vim.cmd("language en_US")
+vim.cmd("language en_US.UTF-8")
 
 -- Lazy.nvim (Plugin Manager)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -41,3 +41,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 }) -- Adjust timeout as needed
   end,
 })
+
+-- Navigate tabs with PageUp/PageDown
+vim.keymap.set("n", "<PageUp>", "gT", { noremap = true, silent = true })
+vim.keymap.set("n", "<PageDown>", "gt", { noremap = true, silent = true })
