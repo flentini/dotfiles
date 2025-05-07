@@ -30,7 +30,7 @@ return {
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "typescript", "javascript", "tsx", "json", "lua" },
+        ensure_installed = { "typescript", "javascript", "tsx", "json", "lua", "go" },
         highlight = { enable = true },
         indent = { enable = true },
       })
@@ -99,6 +99,25 @@ return {
     build = function() vim.fn.system("fzf/install --bin") end
   },
   { "junegunn/fzf.vim" },
+  
+  -- Go plugin for enhanced Go development
+  {
+    "ray-x/go.nvim",
+    dependencies = {
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+    },
+    config = function()
+      require("go").setup({
+        -- Enable auto-formatting on save
+        gofmt = 'gofumpt',
+        lsp_gofumpt = true,
+      })
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- Installs/updates tooling
+  },
 
   -- AI-powered coding
   {

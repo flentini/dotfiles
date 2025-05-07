@@ -45,3 +45,37 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Navigate tabs with PageUp/PageDown
 vim.keymap.set("n", "<PageUp>", "gT", { noremap = true, silent = true })
 vim.keymap.set("n", "<PageDown>", "gt", { noremap = true, silent = true })
+
+-- Go template using custom implementation instead of GoNew
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.go", 
+  callback = function()
+    -- Apply basic template for Go files
+    local filename = vim.fn.expand("%:t")
+    local dirname = vim.fn.expand("%:p:h:t")
+    local package_name = dirname
+    
+    -- Default to main for main.go files or when directory might not be a good package name
+    if filename == "main.go" or package_name:match("^%d") then
+      package_name = "main"
+    end
+    
+    local template = {
+      "package " .. package_name,
+      "",
+    }
+    
+    -- Add import and main function for main package
+    if package_name == "main" then
+      table.insert(template, "import (")
+      table.insert(template, '\t"fmt"')
+      table.insert(template, ")")
+      table.insert(template, "")
+      table.insert(template, "func main() {")
+      table.insert(template, '\tfmt.Println("Hello, world!")')
+      table.insert(template, "}")
+    end
+    
+    vim.api.nvim_buf_set_lines(0, 0, 0, false, template)
+  end,
+})

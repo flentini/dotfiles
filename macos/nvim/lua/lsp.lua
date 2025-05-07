@@ -55,6 +55,20 @@ lspconfig.pyright.setup({
   },
 })
 
+-- Go LSP (gopls)
+lspconfig.gopls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+})
+
 -- nvim-cmp setup for autocompletion
 local cmp = require("cmp")
 
@@ -82,17 +96,22 @@ null_ls.setup({
       extra_args = { "--fast" },
     }),
     null_ls.builtins.diagnostics.ruff, -- Ruff for Python linting
+    null_ls.builtins.diagnostics.golangci_lint, -- Go linting
     null_ls.builtins.code_actions.gitsigns,
   },
 })
 
 -- Auto-format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.py", "*.json" },
+  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.py", "*.json", "*.go" },
   callback = function()
     vim.lsp.buf.format({
       timeout_ms = 2000,
       filter = function(client)
+        -- For Go files, use gopls for formatting
+        if vim.bo.filetype == "go" then
+          return client.name == "gopls" 
+        end
         return client.name == "null-ls"
       end
     })
