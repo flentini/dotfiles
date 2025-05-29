@@ -7,6 +7,20 @@ vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.swapfile = false
 
+-- Settings for vim-prettier
+vim.g["prettier#autoformat"] = 1
+vim.g["prettier#autoformat_require_pragma"] = 0
+vim.g["prettier#exec_cmd_async"] = 1
+vim.g["prettier#quickfix_enabled"] = 0
+
+-- Add autocmd to run prettier on save for HTML files
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.html", "*.htm" },
+  callback = function()
+    vim.cmd("Prettier")
+  end,
+})
+
 -- Make line numbers more visible (with higher priority than themes)
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()

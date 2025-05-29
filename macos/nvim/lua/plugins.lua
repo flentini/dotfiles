@@ -5,20 +5,38 @@ return {
     version = "*",
   },
 
-  -- LSP & Autocompletion for TypeScript
+  -- Language Server Protocol configuration for TypeScript and other languages
   { "neovim/nvim-lspconfig" },
+  
+  -- Simple plugin for HTML syntax highlighting and formatting
+  {
+    "mattn/emmet-vim",  -- HTML/CSS abbreviation expansion
+    ft = { "html", "css" }
+  },
+  
+  -- Prettier formatting for HTML, CSS, JavaScript, etc
+  {
+    "prettier/vim-prettier",
+    build = "npm install --frozen-lockfile --production",
+    ft = { "html", "css", "javascript", "typescript", "json" }
+  },
+  -- Autocompletion engine with LSP integration
   {
     "hrsh7th/nvim-cmp",                  -- Autocompletion
     dependencies = {
       "ray-x/lsp_signature.nvim",        -- Function signature help
     },
   },
+  -- LSP completion source for nvim-cmp
   { "hrsh7th/cmp-nvim-lsp" },
+  -- Buffer text completion source for nvim-cmp
   { "hrsh7th/cmp-buffer" },
+  -- File path completion source for nvim-cmp
   { "hrsh7th/cmp-path" },
   -- { "saadparwaiz1/cmp_luasnip" },
   -- { "L3MON4D3/LuaSnip" },
 
+  -- Git integration for Neovim with Git commands and interface
   {
     "tpope/vim-fugitive",
     cmd = { "Git", "G" }, -- Lazy load on Git commands
@@ -30,13 +48,14 @@ return {
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "typescript", "javascript", "tsx", "json", "lua", "go" },
+        ensure_installed = { "typescript", "javascript", "tsx", "json", "lua", "go", "html" },
         highlight = { enable = true },
         indent = { enable = true },
       })
     end,
   },
 
+  -- Fast cursor movement and navigation with labeled jumps
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -44,7 +63,7 @@ return {
     opts = {
       modes = {
         search = {
-          enabled = true, -- Enable Flash during `/` search
+          enabled = false, -- Disable Flash during `/` search to avoid interference
         },
         char = {
           jump_labels = true, -- Show labels for quick jumps
@@ -61,7 +80,7 @@ return {
     },
   },
 
-  -- theme
+  -- Catppuccin color scheme theme
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -71,7 +90,7 @@ return {
     end,
   },
 
-  -- Statusline
+  -- Customizable statusline with file info and Git status
   {
     "nvim-lualine/lualine.nvim" ,
     -- remember to brew install --cask font-jetbrains-mono-nerd-font
@@ -89,15 +108,17 @@ return {
   --   end
   -- },
 
-  -- Linter and formatter
+  -- Utility library required by many Lua plugins
   { "nvim-lua/plenary.nvim" },
+  -- LSP integration for linters and formatters (deprecated but still functional)
   { "jose-elias-alvarez/null-ls.nvim" },
 
-  -- fzf for ultra-fast fuzzy searching
+  -- Ultra-fast fuzzy finder command-line tool
   {
     "junegunn/fzf",
     build = function() vim.fn.system("fzf/install --bin") end
   },
+  -- Vim integration for fzf with file/buffer/search commands
   { "junegunn/fzf.vim" },
   
   -- Go plugin for enhanced Go development
@@ -119,7 +140,7 @@ return {
     build = ':lua require("go.install").update_all_sync()', -- Installs/updates tooling
   },
 
-  -- AI-powered coding
+  -- AI-powered coding assistant with chat and inline completion
   {
     "olimorris/codecompanion.nvim",
     dependencies = {

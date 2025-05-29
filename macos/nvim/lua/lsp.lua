@@ -69,6 +69,8 @@ lspconfig.gopls.setup({
   },
 })
 
+-- HTML formatting is handled by vim-prettier plugin instead of LSP
+
 -- nvim-cmp setup for autocompletion
 local cmp = require("cmp")
 
@@ -103,7 +105,7 @@ null_ls.setup({
 
 -- Auto-format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.py", "*.json", "*.go" },
+  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.py", "*.json", "*.go", "*.html", "*.htm" },
   callback = function()
     vim.lsp.buf.format({
       timeout_ms = 2000,
@@ -111,6 +113,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         -- For Go files, use gopls for formatting
         if vim.bo.filetype == "go" then
           return client.name == "gopls" 
+        end
+        -- For HTML files, use html-lsp for formatting
+        if vim.bo.filetype == "html" then
+          return client.name == "html"
         end
         return client.name == "null-ls"
       end
